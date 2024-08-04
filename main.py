@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 
 import click
-from paragraph import convert as paragraph_convert
-from shorten import convert as shorten_convert
-from subtitles import convert as subtitles_convert
-from translate import convert as translate_convert
+from textutils.paragraph import convert as paragraph_convert
+from textutils.shorten import convert as shorten_convert
+from textutils.subtitles import convert as subtitles_convert
+from textutils.translate import convert as translate_convert
 import sys
 
 LANGUAGES = [
@@ -42,7 +42,7 @@ def convert(path, output):
 
 @cli.command()
 @click.option("-o", "--output", help="Output file (default STDOUT)")
-@click.option("-n",
+@click.option("-s",
               "--min-lines",
               default=10,
               help="Minimal number of line in paragraph",

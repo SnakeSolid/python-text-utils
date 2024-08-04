@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from lines import nonempty
+from textutils.lines import nonempty
 import ollama
 import progressbar
 

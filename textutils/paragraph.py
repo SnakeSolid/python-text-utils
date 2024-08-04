@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-import lines
+from textutils.lines import nonempty
 
 
 def convert(path, output, min_lines, max_lines):
@@ -8,7 +8,7 @@ def convert(path, output, min_lines, max_lines):
         paragraph = []
         line_length = 0
 
-        for line in lines.nonempty(f):
+        for line in nonempty(f):
             if len(paragraph) < min_lines:
                 paragraph.append(line.rstrip())
                 line_length += len(line)

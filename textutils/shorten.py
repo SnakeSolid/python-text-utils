@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
-from chunk import Chunks
-from lines import nonempty
+from textutils.chunk import Chunks
+from textutils.lines import nonempty
 import ollama
 import progressbar
 
