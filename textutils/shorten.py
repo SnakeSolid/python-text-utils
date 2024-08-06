@@ -5,7 +5,7 @@ from textutils.lines import nonempty
 import ollama
 import progressbar
 
-TEMPLATE = """Fix style and summarize this text to one paragraph. Write ONLY fixed text without introduction and conclusion.
+TEMPLATE = """Fix style and summarize this text to one paragraph. Write ONLY fixed text without introduction and conclusion. Answer in {language}.
 
 ```
 {text}
@@ -22,7 +22,7 @@ WIDGETS = [
 ]
 
 
-def convert(path, output, factor, model, progress):
+def convert(path, output, factor, language, model, progress):
     with open(path, "r") as f:
         chunks = list(Chunks(nonempty(f), factor))
 
@@ -31,7 +31,7 @@ def convert(path, output, factor, model, progress):
 
         for chunk in chunks:
             text = "\n\n".join((line.rstrip() for line in chunk))
-            content = TEMPLATE.format(text=text)
+            content = TEMPLATE.format(language=language, text=text)
             message = {"role": "user", "content": content}
             response = ollama.chat(model=model, messages=[message])
 

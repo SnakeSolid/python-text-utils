@@ -71,6 +71,12 @@ def paragraph(path, output, min_lines, max_lines):
               help="Number of paragraphs to shorten to one",
               type=int,
               show_default=True)
+@click.option("-l",
+              "--language",
+              default="English",
+              help="Destination language",
+              show_default=True,
+              type=click.Choice(LANGUAGES, case_sensitive=False))
 @click.option("-m",
               "--model",
               default="gemma2",
@@ -81,12 +87,12 @@ def paragraph(path, output, min_lines, max_lines):
               help="Show progress bar",
               show_default=True)
 @click.argument("path")
-def shorten(path, output, factor, model, progress):
+def shorten(path, output, factor, language, model, progress):
     if output is None:
-        shorten_convert(path, sys.stdout, factor, model, progress)
+        shorten_convert(path, sys.stdout, factor, language, model, progress)
     else:
         with open(output, "w") as f:
-            shorten_convert(path, f, factor, model, progress)
+            shorten_convert(path, f, factor, language, model, progress)
 
 
 @cli.command()
