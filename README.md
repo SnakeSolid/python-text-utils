@@ -33,7 +33,7 @@ python main.py paragraph /tmp/musk-interview.txt # Text file, created from subti
 Shorten text:
 
 ```bash
-python main.py shorten --factor 10 /tmp/musk-interview.txt # Shorten text, summarize every 10 paragraphs to one
+python main.py shorten --factor 10 --language russian /tmp/musk-interview.txt # Shorten text, summarize every 10 paragraphs to one
 
 ```
 
