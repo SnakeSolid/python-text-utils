@@ -22,13 +22,12 @@ WIDGETS = [
 
 
 def convert(uri, path, output, model, language, progress):
-    with open(path, "r") as f:
+    with open(path, "r", encoding="utf-8") as f:
+        client = Client(uri)
         lines = nonempty(f)
 
         if progress:
             lines = progressbar.progressbar(lines, widgets=WIDGETS)
-
-        client = Client(uri)
 
         for line in lines:
             content = TEMPLATE.format(language=language, text=line.rstrip())

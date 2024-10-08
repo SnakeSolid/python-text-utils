@@ -23,13 +23,12 @@ WIDGETS = [
 
 
 def convert(uri, path, output, factor, language, model, progress):
-    with open(path, "r") as f:
+    with open(path, "r", encoding="utf-8") as f:
+        client = Client(uri)
         chunks = list(Chunks(nonempty(f), factor))
 
         if progress:
             chunks = progressbar.progressbar(chunks, widgets=WIDGETS)
-
-        client = Client(uri)
 
         for chunk in chunks:
             text = "\n\n".join((line.rstrip() for line in chunk))

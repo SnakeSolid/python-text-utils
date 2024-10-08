@@ -4,7 +4,7 @@ from textutils.lines import nonempty
 
 
 def convert(path, output, min_lines, max_lines):
-    with open(path, "r") as f:
+    with open(path, "r", encoding="utf-8") as f:
         paragraph = []
         line_length = 0
 

@@ -4,7 +4,7 @@ import json
 
 
 def convert(path, output):
-    with open(path, "r") as f:
+    with open(path, "r", encoding="utf-8") as f:
         data = json.load(f)
 
         for event in data["events"]:
