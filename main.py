@@ -65,6 +65,11 @@ def paragraph(path, output, min_lines, max_lines):
 
 @cli.command()
 @click.option("-o", "--output", help="Output file (default STDOUT)")
+@click.option("-u",
+              "--uri",
+              default="http://localhost:11434",
+              help="Ollama server URI",
+              show_default=True)
 @click.option("-f",
               "--factor",
               default=5,
@@ -87,16 +92,22 @@ def paragraph(path, output, min_lines, max_lines):
               help="Show progress bar",
               show_default=True)
 @click.argument("path")
-def shorten(path, output, factor, language, model, progress):
+def shorten(uri, path, output, factor, language, model, progress):
     if output is None:
-        shorten_convert(path, sys.stdout, factor, language, model, progress)
+        shorten_convert(uri, path, sys.stdout, factor, language, model,
+                        progress)
     else:
         with open(output, "w") as f:
-            shorten_convert(path, f, factor, language, model, progress)
+            shorten_convert(uri, path, f, factor, language, model, progress)
 
 
 @cli.command()
 @click.option("-o", "--output", help="Output file (default STDOUT)")
+@click.option("-u",
+              "--uri",
+              default="http://localhost:11434",
+              help="Ollama server URI",
+              show_default=True)
 @click.option("-m",
               "--model",
               default="gemma2",
@@ -113,12 +124,12 @@ def shorten(path, output, factor, language, model, progress):
               help="Show progress bar",
               show_default=True)
 @click.argument("path")
-def translate(path, output, model, language, progress):
+def translate(uri, path, output, model, language, progress):
     if output is None:
-        translate_convert(path, sys.stdout, model, language, progress)
+        translate_convert(uri, path, sys.stdout, model, language, progress)
     else:
         with open(output, "w") as f:
-            translate_convert(path, f, model, language, progress)
+            translate_convert(uri, path, f, model, language, progress)
 
 
 if __name__ == "__main__":
